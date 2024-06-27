@@ -4,7 +4,7 @@ import "./styles.css";
 import { useState } from "react";
 
 export const Todo = () => {
-  // const [todoText, setTodoText] = useState("");
+  const [todoText, setTodoText] = useState("");
   const [incompleteTodos, setIncompleteTodos] = useState([
     "Todoです",
     "勉強する",
@@ -14,16 +14,22 @@ export const Todo = () => {
     "勉強しました",
   ]);
 
-  // const onChangeTodoText = (event) => setTodoText(event.target.value);
+  const onChangeTodoText = (event) => setTodoText(event.target.value);
 
-  const onClickRegister = () => alert();
+  const onClickRegister = () => {
+    if (todoText === "") return;
+    const newIncompleteTodos = [...incompleteTodos, todoText];
+    setIncompleteTodos(newIncompleteTodos);
+    setTodoText("");
+  };
   return (
     <>
       <div className="inputArea">
         <input
           type="text"
           placeholder="TODOを入力"
-          // onChange={onChangeTodoText}
+          value={todoText}
+          onChange={onChangeTodoText}
         />
         <button onClick={onClickRegister}>登録</button>
       </div>
