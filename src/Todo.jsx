@@ -1,7 +1,9 @@
-// import { InputTodo } from "./components/InputTodo";
-import "./styles.css";
-
 import { useState } from "react";
+
+import { InputTodo } from "./components/InputTodo";
+import { IncompleteTodosArea } from "./components/IncompleteTodosArea";
+import { CompleteTodosArea } from "./components/CompleteTodosArea";
+import "./styles.css";
 
 export const Todo = () => {
   const [todoText, setTodoText] = useState("");
@@ -42,46 +44,17 @@ export const Todo = () => {
   };
   return (
     <>
-      <div className="inputArea">
-        <input
-          type="text"
-          placeholder="TODOを入力"
-          value={todoText}
-          onChange={onChangeTodoText}
-        />
-        <button onClick={onClickRegister}>登録</button>
-      </div>
-      <div className="incompleteArea">
-        <p className="title">未完了項目</p>
-        <ul>
-          {incompleteTodos.map((todo, index) => (
-            <li key={todo}>
-              <div className="todo">
-                <p className="todo_item">{todo}</p>
-                <div>
-                  <button onClick={() => onClickComplete(index)}>完了</button>
-                  <button onClick={() => onClickDelete(index)}>削除</button>
-                </div>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="completeArea">
-        <p className="title">完了項目</p>
-        <ul>
-          {completeTodos.map((todo, index) => {
-            return (
-              <li key={todo}>
-                <div className="todo">
-                  <p className="todo_item">{todo}</p>
-                  <button onClick={() => onClickReturn(index)}>戻す</button>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+      <InputTodo
+        todoText={todoText}
+        onChange={onChangeTodoText}
+        onClick={onClickRegister}
+      />
+      <IncompleteTodosArea
+        todos={incompleteTodos}
+        onClickComplete={onClickComplete}
+        onClickDelete={onClickDelete}
+      />
+      <CompleteTodosArea todos={completeTodos} onClickReturn={onClickReturn} />
     </>
   );
 };
