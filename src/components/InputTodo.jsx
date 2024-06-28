@@ -1,5 +1,5 @@
 export const InputTodo = (props) => {
-  const { todoText, onChange, onClick } = props;
+  const { todoText, onChange, onClick, disabled } = props;
   return (
     <div style={inputArea}>
       <input
@@ -7,8 +7,9 @@ export const InputTodo = (props) => {
         placeholder="TODOを入力"
         value={todoText}
         onChange={onChange}
+        disabled={disabled}
       />
-      <button onClick={onClick}>登録</button>
+      <button disabled={disabled} onClick={onClick}>登録</button>
     </div>
   );
 };
