@@ -28,6 +28,7 @@ button {
   margin: 3px 3px;
   &:hover {
     background-color: #675e55;
+    color: #fff;
     cursor: pointer;
   }
 }
